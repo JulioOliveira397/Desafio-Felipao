@@ -1,1 +1,0 @@
-console.log ("Viver é Cristo, Morrer é Lucro!");
