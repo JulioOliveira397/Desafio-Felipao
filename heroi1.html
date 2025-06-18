@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Herói Atacando</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    label, input, select {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px;
+      font-weight: bold;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Criador de Herói</h1>
+
+  <label>Nome:
+    <input type="text" id="nome">
+  </label>
+
+  <label>Idade:
+    <input type="number" id="idade">
+  </label>
+
+  <label>Tipo:
+    <select id="tipo">
+      <option value="mago">Mago</option>
+      <option value="guerreiro">Guerreiro</option>
+      <option value="monge">Monge</option>
+      <option value="ninja">Ninja</option>
+    </select>
+  </label>
+
+  <button onclick="criarHeroi()">Atacar!</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    class Heroi {
+      constructor(nome, idade, tipo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.tipo = tipo;
+      }
+
+      atacar() {
+        let ataque;
+
+        switch (this.tipo) {
+          case "mago":
+            ataque = "magia";
+            break;
+          case "guerreiro":
+            ataque = "espada";
+            break;
+          case "monge":
+            ataque = "artes marciais";
+            break;
+          case "ninja":
+            ataque = "shuriken";
+            break;
+          default:
+            ataque = "um ataque desconhecido";
+        }
+
+        const tipoFormatado = this.tipo.charAt(0).toUpperCase() + this.tipo.slice(1);
+        return `O ${tipoFormatado} "${this.nome}" atacou utilizando ${ataque}.`;
+      }
+    }
+
+    function criarHeroi() {
+      const nome = document.getElementById("nome").value;
+      const idade = parseInt(document.getElementById("idade").value);
+      const tipo = document.getElementById("tipo").value;
+
+      const heroi = new Heroi(nome, idade, tipo);
+      document.getElementById("resultado").innerText = heroi.atacar();
+    }
+  </script>
+
+</body>
+</html>
